@@ -1,6 +1,13 @@
-<div id="user-{{i}}" *ngFor="let user of users; let i=index;">
-  <p>{{user.login}}</p>
-  <p>{{user.url}}</p>
-  <p>{{user.admin}}</p>
-  <img alt="avatar" width="200">
+<div>
+  <label for="">Ingrese nombre de usuario: </label>				
+  <input #nombreUsuario/>		
+</div>
+<div>
+  <button (click)="getUser(nombreUsuario.value)">Buscar!</button>
+</div>
+
+<div>
+  <p>{{result.encontrado}}</p>
+  <p>Nombre login: {{result.foundUser.login}}</p>
+  <p>Urlrepositorio: {{result.foundUser.url}}</p>
 </div>

@@ -36,14 +36,26 @@ describe('ListUsersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set users', () => {
-    component.ngOnInit();
-    expect(component.users[0].login).toEqual('mojombo');
+  it('returns user data because the user exist', () => {
+    component.getUser('mojombo');
+    const object = JSON.parse(JSON.stringify(component.result));
+    expect(object.foundUser.login).toContain('mojombo')
   });
 
-  it('should set users undefined', () => {
-    component.ngOnInit();
-    expect(component.users[4]).toBeUndefined();
+  it('returns data empty because the nombreUsuario is empty', () => {
+    component.getUser('');
+    const object = JSON.parse(JSON.stringify(component.result));
+    expect(object.encontrado).toEqual('');
+  });
+
+ 
+
+  it('returns in field encontrado "El usuario no existe" because the user not exist', () => {
+    component.getUser('test');
+    const object = JSON.parse(JSON.stringify(component.result));
+    console.log(object)
+    console.log(object.encontrado)
+    expect(object.encontrado).toEqual('El usuario no existe');
   });
 
 });
